@@ -118,7 +118,7 @@
                                   <td><input class="inputs" type="number" id="length_'+ row_count+'" tabindex="'+tabindex_count+'" onKeyPress="next_input_focus(event, this)"></td>\
                                   <td><input class="inputs" type="number" id="width_'+ row_count+'" tabindex="'+(tabindex_count+1)+'" onKeyPress="next_input_focus(event, this)"></td>\
                                   <td><input class="inputs" type="number" id="pieces_'+ row_count+'" tabindex="'+(tabindex_count+2)+'" onKeyPress="next_input_focus(event, this)"></td>\
-                                  <td><input class="inputs" type="number" id="square_feet_'+ row_count+'" readonly onfocus="calculate(this.id)" tabindex="'+(tabindex_count+3)+'" onKeyPress="next_input_focus(event, this)"></td>\
+                                  <td><input class="inputs" type="number" id="square_feet_'+ row_count+'" onfocus="calculate(this.id)" tabindex="'+(tabindex_count+3)+'" onKeyPress="next_input_focus(event, this)"></td>\
                                 </tr>';
           tabindex_count += 4;
           var tableRef = document.getElementById('sizes').getElementsByTagName('tbody')[0];
@@ -192,7 +192,7 @@
         <td><input class="inputs" type="number" id="length_1" tabindex="1" onKeyPress="next_input_focus(event, this)"></td>
         <td><input class="inputs" type="number" id="width_1" tabindex="2" onKeyPress="next_input_focus(event, this)"></td>
         <td><input class="inputs" type="number" id="pieces_1" tabindex="3" onKeyPress="next_input_focus(event, this)"></td>
-        <td><input class="inputs" type="number" id="square_feet_1" readonly onfocus="calculate(this.id)" tabindex="4" onKeyPress="next_input_focus(event, this)"></td>
+        <td><input class="inputs" type="number" id="square_feet_1" onfocus="calculate(this.id)" tabindex="4" onKeyPress="next_input_focus(event, this)"></td>
       </tr>
     </tbody>
     <tr>
