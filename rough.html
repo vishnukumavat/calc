@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td><input type="number" /></td>
+            <td><input type="number" /></td>
+            <td><input type="number" /></td>
+        </tr>
+    </table>
+    <script>
+        $("input,select").bind("keydown", function (e) {
+            var keyCode = e.keyCode || e.which;
+            if(keyCode === 13) {
+                e.preventDefault();
+                $('input, select, textarea')
+                [$('input,select,textarea').index(this)+1].focus();
+            }
+        });
+       
+    </script>
+</body>
+</html>
