@@ -5,8 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <link rel="icon" href="https://ya-webdesign.com/images600_/calculator-icon-png-1.png" type="image/icon type">
   <title>Stone Calculator</title>
+  <style>
+    input {
+      border: 0;
+      outline: 0;
+      background: transparent;
+      border-bottom: 0px solid black;
+      text-align: center;
+      width: 50px;
+    }
+  </style>
   <script>
     var row_count = 1;
     var tabindex_count = 5;
@@ -115,9 +130,9 @@
         if("square_feet_"+row_count == row_id && is_value!=''){
           row_count++;
           var myHtmlContent = '<tr id="row_'+row_count+'">\
-                                  <td><input class="inputs" type="number" id="length_'+ row_count+'" tabindex="'+tabindex_count+'" onKeyPress="next_input_focus(event, this)"></td>\
-                                  <td><input class="inputs" type="number" id="width_'+ row_count+'" tabindex="'+(tabindex_count+1)+'" onKeyPress="next_input_focus(event, this)"></td>\
-                                  <td><input class="inputs" type="number" id="pieces_'+ row_count+'" tabindex="'+(tabindex_count+2)+'" onKeyPress="next_input_focus(event, this)"></td>\
+                                  <td><input class="inputs" type="number" id="length_'+ row_count+'" tabindex="'+tabindex_count+'" onKeyPress="next_input_focus(event, this)"><i style="font-size:20px;">&#10007;</i></td>\
+                                  <td><input class="inputs" type="number" id="width_'+ row_count+'" tabindex="'+(tabindex_count+1)+'" onKeyPress="next_input_focus(event, this)"><i style="font-size:20px;">&#10007;</i></td>\
+                                  <td><input class="inputs" type="number" id="pieces_'+ row_count+'" tabindex="'+(tabindex_count+2)+'" onKeyPress="next_input_focus(event, this)"><i style="font-size:20px;" class="fas">&#xf30b;</i></td>\
                                   <td><input class="inputs" type="number" id="square_feet_'+ row_count+'" onfocus="calculate(this.id)" tabindex="'+(tabindex_count+3)+'" onKeyPress="next_input_focus(event, this)"></td>\
                                 </tr>';
           tabindex_count += 4;
@@ -141,11 +156,12 @@
         }
       }
       var original_area = length*width*pieces;
+      console.log(original_area)
       var stringfy_area_array = original_area.toString().split('.');
       var decimal_value = 0;
       if(stringfy_area_array.length > 1){
-        decimal_value = parseInt(stringfy_area_array[1]);
-        if(decimal_value>0 && decimal_value<=500){
+        decimal_value = parseInt(stringfy_area_array[1].toString().charAt(0)+stringfy_area_array[1].toString().charAt(1));
+        if(decimal_value>0 && decimal_value<=50){
           decimal_value = 0.5;
         }
         else{
@@ -180,27 +196,32 @@
   </script>
 </head>
 <body>
-  <table id="sizes">
-    <tbody>
+  <table id="sizes" class="table table-sm" style="width: 100%;">
+    <thead class="thead-dark">
       <tr>
-        <th>Length</th>
-        <th>width</th>
-        <th>Pieces</th>
-        <th>Square Feet</th>
+        <th><i style='font-size:20px;color:red' class='fas'>&#xf338;</i> Length </th>
+        <th><i style='font-size:20px;color:red' class='fas'>&#xf337;</i> Width</th>
+        <th><i style='font-size:20px;color:red' class='fas'>&#xf218;</i> Qunatity</th>
+        <th><i style='font-size:20px;color:red' class='fas'>&#xf074;</i> Square Feet</th>
       </tr>
+    </thead>
+    <tbody>
       <tr id="row_1">
-        <td><input class="inputs" type="number" id="length_1" tabindex="1" onKeyPress="next_input_focus(event, this)"></td>
-        <td><input class="inputs" type="number" id="width_1" tabindex="2" onKeyPress="next_input_focus(event, this)"></td>
-        <td><input class="inputs" type="number" id="pieces_1" tabindex="3" onKeyPress="next_input_focus(event, this)"></td>
+        <td><input class="inputs" type="number" id="length_1" tabindex="1" onKeyPress="next_input_focus(event, this)"><i style='font-size:20px;'>&#10007;</i></td>
+        <td><input class="inputs" type="number" id="width_1" tabindex="2" onKeyPress="next_input_focus(event, this)"><i style='font-size:20px;'>&#10007;</i></td>
+        <td><input class="inputs" type="number" id="pieces_1" tabindex="3" onKeyPress="next_input_focus(event, this)"><i style='font-size:20px;' class='fas'>&#xf30b;</i></td>
         <td><input class="inputs" type="number" id="square_feet_1" onfocus="calculate(this.id)" tabindex="4" onKeyPress="next_input_focus(event, this)"></td>
       </tr>
     </tbody>
-    <tr>
+    <tfoot class="thead-dark">
+      <tr>
         <th></th>
         <th>Total</th>
         <th id="total_pieces"></th>
         <th id="total_square_feet"></th>
     </tr>
+    </tfoot>
   </table>
+  <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
 </body>
 </html>

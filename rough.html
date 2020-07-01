@@ -8,23 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <table>
-        <tr>
-            <td><input type="number" /></td>
-            <td><input type="number" /></td>
-            <td><input type="number" /></td>
-        </tr>
-    </table>
-    <script>
-        $("input,select").bind("keydown", function (e) {
-            var keyCode = e.keyCode || e.which;
-            if(keyCode === 13) {
-                e.preventDefault();
-                $('input, select, textarea')
-                [$('input,select,textarea').index(this)+1].focus();
-            }
-        });
-       
-    </script>
+    <h3>Share on whatsapp</h3>
+    <a href="https://api.whatsapp.com/send?phone=91XXXXXXXXXX&text=urlencodedtext" target="_blank">WA</a>
 </body>
 </html>
