@@ -10,16 +10,27 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://files.codepedia.info/files/uploads/iScripts/html2canvas.js"></script>
   <link rel="icon" href="https://ya-webdesign.com/images600_/calculator-icon-png-1.png" type="image/icon type">
   <title>Stone Calculator</title>
   <style>
-    input {
+    .inputs {
       border: 0;
       outline: 0;
       background: transparent;
       border-bottom: 0px solid black;
       text-align: center;
       width: 50px;
+    }
+    #name {
+      border: 0;
+      outline: 0;
+      background: transparent;
+      border-bottom: 1px solid black;
+      text-align: center;
+      color: antiquewhite;
+      background-color: black;
     }
   </style>
   <script>
@@ -196,32 +207,54 @@
   </script>
 </head>
 <body>
-  <table id="sizes" class="table table-sm" style="width: 100%;">
-    <thead class="thead-dark">
-      <tr>
-        <th><i style='font-size:20px;color:red' class='fas'>&#xf338;</i> Length </th>
-        <th><i style='font-size:20px;color:red' class='fas'>&#xf337;</i> Width</th>
-        <th><i style='font-size:20px;color:red' class='fas'>&#xf218;</i> Qunatity</th>
-        <th><i style='font-size:20px;color:red' class='fas'>&#xf074;</i> Square Feet</th>
+  <div id="content_holder">
+    <h5><input type="text" id="name" placeholder="Name here" value="Ladi Bhandar"></h5>
+    <table style="background-color: antiquewhite;" id="sizes" class="table table-sm" style="width: 100%;">
+      <thead class="thead-dark">
+        <tr>
+          <th><i style='font-size:20px;color:red' class='fas'>&#xf338;</i> L </th>
+          <th><i style='font-size:20px;color:red' class='fas'>&#xf337;</i> W</th>
+          <th><i style='font-size:20px;color:red' class='fas'>&#xf218;</i> Q</th>
+          <th><i style='font-size:20px;color:red' class='fas'>&#xf074;</i> F</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr id="row_1">
+          <td><input class="inputs" type="number" id="length_1" tabindex="1" onKeyPress="next_input_focus(event, this)"><i style='font-size:20px;'>&#10007;</i></td>
+          <td><input class="inputs" type="number" id="width_1" tabindex="2" onKeyPress="next_input_focus(event, this)"><i style='font-size:20px;'>&#10007;</i></td>
+          <td><input class="inputs" type="number" id="pieces_1" tabindex="3" onKeyPress="next_input_focus(event, this)"><i style='font-size:20px;' class='fas'>&#xf30b;</i></td>
+          <td><input class="inputs" type="number" id="square_feet_1" onfocus="calculate(this.id)" tabindex="4" onKeyPress="next_input_focus(event, this)"></td>
+        </tr>
+      </tbody>
+      <tfoot class="thead-dark">
+        <tr>
+          <th></th>
+          <th>Total</th>
+          <th id="total_pieces"></th>
+          <th id="total_square_feet"></th>
       </tr>
-    </thead>
-    <tbody>
-      <tr id="row_1">
-        <td><input class="inputs" type="number" id="length_1" tabindex="1" onKeyPress="next_input_focus(event, this)"><i style='font-size:20px;'>&#10007;</i></td>
-        <td><input class="inputs" type="number" id="width_1" tabindex="2" onKeyPress="next_input_focus(event, this)"><i style='font-size:20px;'>&#10007;</i></td>
-        <td><input class="inputs" type="number" id="pieces_1" tabindex="3" onKeyPress="next_input_focus(event, this)"><i style='font-size:20px;' class='fas'>&#xf30b;</i></td>
-        <td><input class="inputs" type="number" id="square_feet_1" onfocus="calculate(this.id)" tabindex="4" onKeyPress="next_input_focus(event, this)"></td>
-      </tr>
-    </tbody>
-    <tfoot class="thead-dark">
-      <tr>
-        <th></th>
-        <th>Total</th>
-        <th id="total_pieces"></th>
-        <th id="total_square_feet"></th>
-    </tr>
-    </tfoot>
-  </table>
-  <a href="whatsapp://send?text=The text to share!" data-action="share/whatsapp/share">Share via Whatsapp</a>
+      </tfoot>
+    </table>
+  </div>
+  <a id="btn-Convert-Html2Image" href="#">Download</a>
+  <script>
+    $(document).ready(function(){
+    var element = $("#content_holder");
+    var getCanvas;
+        $("#btn-Convert-Html2Image").on('click', function () {
+            html2canvas(element, {
+                onrendered: function (canvas) {
+                    getCanvas = canvas;
+                    }
+                });
+            let r = Math.random().toString(36).substring(7);
+            var imgageData = getCanvas.toDataURL("image/png");
+            var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
+            $("#btn-Convert-Html2Image").attr("download", document.getElementById('name').value+'_'+r+".png").attr("href", newData);
+        });
+
+    });
+
+</script>
 </body>
 </html>
